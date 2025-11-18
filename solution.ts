@@ -14,7 +14,6 @@ function formatValue(
   return value;
 }
 
-
 function getLength(value: string | number[]): number {
   if (typeof value === "string") {
     return value.length;
@@ -24,9 +23,7 @@ function getLength(value: string | number[]): number {
   else {
     return value.length;
   }
-
 }
-
 
 class Person {
   name: string;
@@ -42,8 +39,6 @@ class Person {
   }
 }
 
-
-
 function filterByRating(
   items: {
     title: string;
@@ -56,14 +51,14 @@ function filterByRating(
   return items.filter((item) => item.rating >= 4);
 }
 
-
-
-function filterActiveUsers(users: {
-  id: number;
-  name: string;
-  email: string;
-  isActive: boolean;
-}[]): {
+function filterActiveUsers(
+  users: {
+    id: number;
+    name: string;
+    email: string;
+    isActive: boolean;
+  }[]
+): {
   id: number;
   name: string;
   email: string;
@@ -71,10 +66,6 @@ function filterActiveUsers(users: {
 }[] {
   return users.filter((user) => user.isActive === true);
 }
-
-
-
-
 
 interface Book {
   title: string;
@@ -86,11 +77,68 @@ interface Book {
 function printBookDetails(book: Book): any {
   const availability = book.isAvailable ? "Yes" : "No";
   console.log(
-    "Title: " + book.title +
-    ", Author: " + book.author +
-    ", Published: " + book.publishedYear +
-    ", Available: " + availability
+    "Title: " +
+      book.title +
+      ", Author: " +
+      book.author +
+      ", Published: " +
+      book.publishedYear +
+      ", Available: " +
+      availability
   );
 }
+
+function getUniqueValues(arr1: number[], arr2: number[]): number[] {
+  const result: number[] = [];
+  const all = [arr1, arr2];
+
+  for (let k = 0; k < all.length; k++) {
+    for (let i = 0; i < all[k].length; i++) {
+      let found = false;
+
+      for (let j = 0; j < result.length; j++) {
+        if (result[j] === all[k][i]) {
+          found = true;
+          break;
+        }
+      }
+
+      if (!found) result[result.length] = all[k][i];
+    }
+  }
+
+  return result;
+}
+
+
+
+function calculateTotalPrice(
+  products: {
+    name: string;
+    price: number;
+    quantity: number;
+    discount?: number;
+  }[]
+): number {
+  if (products.length === 0) return 0;
+
+  let total = 0;
+
+  for (let i = 0; i < products.length; i++) {
+    const item = products[i];
+    const price = item.price * item.quantity;
+
+    let finalPrice = price;
+
+    if (item.discount !== undefined) {
+      finalPrice = price - (price * item.discount) / 100;
+    }
+
+    total += finalPrice;
+  }
+
+  return total;
+}
+
 
 
