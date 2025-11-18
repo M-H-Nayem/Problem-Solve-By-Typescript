@@ -1,27 +1,32 @@
-
-type Value = string | number | boolean
-
-function formatValue(value:Value ): Value {
-
+function formatValue(
+  value: string | number | boolean
+): string | number | boolean {
   if (typeof value === "string") {
     return value.toUpperCase();
   }
-
   if (typeof value === "number") {
     return value * 10;
   }
-
   if (typeof value === "boolean") {
     return !value;
   }
-
   // fallback (should never happen)
   return value;
 }
 
-// Sample Input
-console.log(formatValue("hello")); // HELLO
-console.log(formatValue(5));       // 50
-console.log(formatValue(true));    // false
+
+function getLength(value: string | number[]): number {
+  if (typeof value === "string") {
+    return value.length;
+  }
+
+  // if (Array.isArray(value))
+  else {
+    return value.length;
+  }
+
+}
+
+
 
 
